@@ -1,7 +1,17 @@
 import React from 'react'
 
-export const Noteitem = () => {
+export const Noteitem = (props) => {
+    const {note} =props;
   return (
-    <div>Noteitem</div>
+  <>
+  <div className="col-md-3">
+    <div className="card my-3">
+    <div className="card-body">
+        <h5 className="card-title">{note.tittle}</h5>
+        <p className="card-text">{note.description}</p>
+    </div>
+    </div>
+  </div>
+  </>
   )
 }
