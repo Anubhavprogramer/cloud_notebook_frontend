@@ -11,13 +11,13 @@ function App() {
       {/* <h1>this is Cloud note beook</h1> */}
       <NoteState>
         <Router>
-          <Navbar/>
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-          </Routes>
-          <Routes>
-            <Route exact path="/about" element={<About />} />
-          </Routes>
+          <Navbar />
+          <div className="container">
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route exact path="/about" element={<About />} />
+            </Routes>
+          </div>
         </Router>
       </NoteState>
     </>
