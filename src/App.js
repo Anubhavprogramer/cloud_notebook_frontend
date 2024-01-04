@@ -15,7 +15,7 @@ function App() {
         {/* Router to store all the routes which we have to add to navbar */}
         <Router>
           <Navbar />{/* navbar components this will render first  */}
-          <Alert messages="This is amazing react cource"/>  {/* alert messages to show when we do something like adding,deleting, updating, fetching notes form our databse */}
+          <Alert messages="I am prowest of the pro"/>  {/* alert messages to show when we do something like adding,deleting, updating, fetching notes form our databse */}
           <div className="container">
             {/* this div actually contains all the routes for show casing  */}
             <Routes> 

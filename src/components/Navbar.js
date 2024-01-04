@@ -7,7 +7,7 @@ export const Navbar = () => {
   let location = useLocation();
   useEffect(()=>{
     // location.pathname will store the path name of page
-    console.log(location.pathname) //printing the location of the page
+    // console.log(location.pathname) //printing the location of the page
     },[location])
     //here we are using use effect ti get the location everytime we refresh the page or move to another page like home or about (int this case)
   return (
