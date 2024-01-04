@@ -33,7 +33,7 @@ export const Notes = () => {
     <>
       <Addnote />
       {/* <!-- Modal --> */}
-      <button ref={ref} type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button ref={ref} type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" className="d-none">
       </button>
       <div
         className="modal fade"
@@ -50,7 +50,7 @@ export const Notes = () => {
               </h5>
               <button
                 type="button"
-                className="btn-close"
+                className="btn-close d-none"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
@@ -70,6 +70,8 @@ export const Notes = () => {
             placeholder="Note Title"
             value={note.etitle}
             onChange={onchange}
+            minLength={5}
+            required
           />
         </div>
         <div className="mb-3">
@@ -83,6 +85,8 @@ export const Notes = () => {
             rows="3"
             onChange={onchange}
             value={note.edescription}
+            minLength={5}
+            required
           ></textarea>
         </div>
         <div className="mb-3">
@@ -97,6 +101,8 @@ export const Notes = () => {
             placeholder="Note Title"
             value={note.etag}
             onChange={onchange}
+            minLength={5}
+            required
           />
         </div>
       </div>
@@ -125,6 +131,9 @@ export const Notes = () => {
       {/* modal ends  */}
       <div className="row mt-10">
         <h1>Your notes</h1>
+        <div className="container">
+        {notes.length===0 && 'No notes avaliable'}
+        </div>
         {notes.map((note) => {
           return (
             <Noteitem key={note._id} updateNote={updateNote} note={note} />

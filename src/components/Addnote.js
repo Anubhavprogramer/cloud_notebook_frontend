@@ -13,7 +13,12 @@ export const Addnote = () => {
       return;
     }
     addNote(note.title,note.description,note.tag);
+    setnote({title:"",description:"",tag:""})
   }
+
+  const resetbutton=()=>{
+    setnote({title:"",description:"",tag:""})
+  } 
 
   const [note, setnote] = useState({title:"",description:"",tag:""})
   const onchange = (e)=>{
@@ -33,6 +38,9 @@ export const Addnote = () => {
             name='title'
             placeholder="Note Title"
             onChange={onchange}
+            minLength={5}
+            required 
+            value={note.title}
           />
         </div>
         <div className="mb-3">
@@ -45,6 +53,10 @@ export const Addnote = () => {
             name='description'
             rows="3"
             onChange={onchange}
+            placeholder='Note Description'
+            minLength={5}
+            required 
+            value={note.description}
           ></textarea>
         </div>
         <div className="mb-3">
@@ -58,9 +70,13 @@ export const Addnote = () => {
             name='tag'
             placeholder="Note Title"
             onChange={onchange}
+            minLength={5}
+            required 
+            value={note.tag}
           />
         </div>
-          <button type="button" className="btn btn-primary" onClick={Submitthenote} >Submit</button>
+          <button disabled={note.title.length<5 || note.description.length<5 || note.tag.length<3} type="button" className="btn btn-primary" onClick={Submitthenote} >ADD NOTE</button>
+          <button disabled={note.title.length<5 || note.description.length<5 || note.tag.length<3} type="button" className="btn btn-danger mx-3" onClick={resetbutton} >RESET</button>
       </div>
   )
 }
