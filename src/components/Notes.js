@@ -10,6 +10,7 @@ export const Notes = () => {
   const { notes,getallNote,editnote } = context;
   useEffect(() => {
     getallNote();
+    // eslint-disable-next-line
   }, []);
 
   const updateNote = (currentnote) => {

@@ -13,7 +13,7 @@ export const Navbar = () => {
   return (
     <>
     {/* bootstrap code to make navbar */}
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark"> 
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between"> 
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             Navbar
@@ -50,6 +50,10 @@ export const Navbar = () => {
               </li>
             </ul>
           </div>
+            <form className="d-flex ">
+              <Link className="btn btn-primary mx-2" to="/login" role="button">Login</Link>
+              <Link className="btn btn-primary mx-3" to="/signup" role="button">Sign up</Link>
+            </form>
         </div>
       </nav>
     </>
