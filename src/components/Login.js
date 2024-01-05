@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const Login = () => {
+export const Login = (props) => {
     const navigate = useNavigate();
     const [Credentials, setCredentials] = useState({ email: "", password: "" });
     const Submittheform = async (e) => {
@@ -27,9 +27,10 @@ export const Login = () => {
         // console.log(navigate)
         localStorage.setItem('token', json.authtoken)
         navigate("/")
+        props.showAlert("Login successfully", "success")
     }
     else{
-        alert("invalid credentials")
+      props.showAlert("Invalid Details ", "danger")
     }
   };
 
@@ -40,9 +41,10 @@ export const Login = () => {
   return (
     <>
       <form
-        className="container w-5 border border-4 py-3"
+        className="container w-5 border border-4 py-3 my-5 "
         onSubmit={Submittheform}
       >
+        <h1>Login to CLOUD NOTE BOOK</h1>
         <div className="mb-3">
           <label htmlFor="email" className="form-label">
             Email address

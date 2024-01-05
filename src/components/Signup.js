@@ -1,7 +1,7 @@
 import React ,{useState} from 'react'
 import { useNavigate } from "react-router-dom";
 
-export const Signup = () => {
+export const Signup = (props) => {
   const navigate = useNavigate();
   const [Credentials, setCredentials] = useState({ name:"",email: "", password: "", cnfpassword:"" });
     const Submittheform = async (e) => {
@@ -25,10 +25,11 @@ export const Signup = () => {
         // redirect
         // console.log(navigate)
         localStorage.setItem('token', json.authtoken)
+        props.showAlert("Account created successfully", "success")
         navigate("/")
     }
     else{
-        alert("invalid credentials")
+        props.showAlert("Invlaid Credentials", "danger")
     }
   };
 
@@ -41,9 +42,10 @@ export const Signup = () => {
   return (
     <div>
           <form
-        className="container w-5 border border-4 py-3"
+        className="container w-5 border border-4 py-3 my-5"
         onSubmit={Submittheform}
       >
+        <h1>SIGN UP to CLOUD NOTE BOOK</h1>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
             name

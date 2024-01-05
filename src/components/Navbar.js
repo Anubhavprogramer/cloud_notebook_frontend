@@ -1,8 +1,13 @@
 import React,{useEffect} from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation,useNavigate } from "react-router-dom";
 
 // function based component for loading navbar
 export const Navbar = () => {
+  const navigate = useNavigate()
+  const handlelogout = ()=>{
+    localStorage.removeItem('token');
+    navigate('/login')
+  }
   // here we are adding  using useLocation hook to get the locaiton of page we are on, like in this either we are in / page or in /about page location variable will strore the whole object returned from useLocation() function 
   let location = useLocation();
   useEffect(()=>{
@@ -50,10 +55,10 @@ export const Navbar = () => {
               </li>
             </ul>
           </div>
-            <form className="d-flex ">
+            {!localStorage.getItem("token")?<form className="d-flex ">
               <Link className="btn btn-primary mx-2" to="/login" role="button">Login</Link>
               <Link className="btn btn-primary mx-3" to="/signup" role="button">Sign up</Link>
-            </form>
+            </form>:<button className="btn btn-primary mx-3" onClick={handlelogout}>logout</button>}
         </div>
       </nav>
     </>

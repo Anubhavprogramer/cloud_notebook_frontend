@@ -1,27 +1,38 @@
 import React, { useContext,useEffect, useRef,useState } from "react";
+import { useNavigate } from "react-router-dom";
 import noteContext from "../context/Notes/NoteContext";
 import { Noteitem } from "./Noteitem";
 import { Addnote } from "./Addnote";
 
-export const Notes = () => {
+export const Notes = (props) => {
   const ref = useRef(null);
   const refclose = useRef(null);
   const context = useContext(noteContext);
+  const navigation = useNavigate(); 
   const { notes,getallNote,editnote } = context;
   useEffect(() => {
-    getallNote();
+    if(localStorage.getItem('token')){
+      getallNote();
+      console.log("test to check")
+    }
+    else{      
+      // console.log("test to check")
+      navigation("/login")
+    }
+    // console.log("test to check")
     // eslint-disable-next-line
   }, []);
 
   const updateNote = (currentnote) => {
     ref.current.click();
     setnote({id:currentnote._id,etitle:currentnote.title,edescription:currentnote.description,etag:currentnote.tag})
+    // props.showAlert("Note updated successfully", "success")
   };
 
   const Submitthenote = (e) =>{
     editnote(note.etitle,note.edescription,note.etag);
     editnote(note.id,note.etitle,note.edescription,note.etag)
-
+    props.showAlert("updated successfully","success")
     refclose.current.click();
   }
   const [note, setnote] = useState({id:"",etitle:"",edescription:"",etag:""})
@@ -32,7 +43,7 @@ export const Notes = () => {
 
   return (
     <>
-      <Addnote />
+      <Addnote showAlert={props.showAlert}/>
       {/* <!-- Modal --> */}
       <button ref={ref} type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" className="d-none">
       </button>
@@ -120,7 +131,7 @@ export const Notes = () => {
               >
                 Close
               </button>
-              <button type="button" className="btn btn-primary" onClick={Submitthenote}>
+              <button type="button" className="btn btn-primary" onClick={Submitthenote } >
                 Save changes
               </button>
             </div>
@@ -137,7 +148,7 @@ export const Notes = () => {
         </div>
         {notes.map((note) => {
           return (
-            <Noteitem key={note._id} updateNote={updateNote} note={note} />
+            <Noteitem key={note._id} updateNote={updateNote} note={note} showAlert={props.showAlert}/>
           );
         })}
       </div>

@@ -2,7 +2,7 @@ import {React,useContext} from 'react';
 import noteContext from "../context/Notes/NoteContext";
 import { useState } from 'react';
 
-export const Addnote = () => {
+export const Addnote = (props) => {
   const context = useContext(noteContext);
   const {addNote } = context;
   const Submitthenote = (e) =>{
@@ -14,10 +14,12 @@ export const Addnote = () => {
     }
     addNote(note.title,note.description,note.tag);
     setnote({title:"",description:"",tag:""})
+    props.showAlert("Note Added successfully", "success")
   }
 
   const resetbutton=()=>{
     setnote({title:"",description:"",tag:""})
+    props.showAlert("Deleted successfully", "danger")
   } 
 
   const [note, setnote] = useState({title:"",description:"",tag:""})
