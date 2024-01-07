@@ -28,9 +28,11 @@ export const Addnote = (props) => {
   }
   return (
     <div className="container">
-        <h1>Add a new note</h1>
+        <h1 className={` container text-${props.mode === "dark" ? "light" : "secondary"}`}>Add a new note</h1>
         <div className="mb-3">
-          <label htmlFor="title" className="form-label">
+          <label htmlFor="title" className={`form-label text-${
+              props.mode === "dark" ? "light" : "secondary"
+            }`}>
             Note Title{""}
           </label>
           <input
@@ -46,7 +48,9 @@ export const Addnote = (props) => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="description" className="form-label">
+          <label htmlFor="description" className={`form-label text-${
+              props.mode === "dark" ? "light" : "secondary"
+            }`}>
             Note Description
           </label>
           <textarea
@@ -62,7 +66,9 @@ export const Addnote = (props) => {
           ></textarea>
         </div>
         <div className="mb-3">
-          <label htmlFor="tag" className="form-label">
+          <label htmlFor="tag" className={`form-label text-${
+              props.mode === "dark" ? "light" : "secondary"
+            }`}>
             tag{""}
           </label>
           <input

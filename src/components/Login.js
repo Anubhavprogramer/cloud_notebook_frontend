@@ -44,14 +44,19 @@ export const Login = (props) => {
         className="container w-5 border border-4 py-3 my-5 "
         onSubmit={Submittheform}
       >
-        <h1>Login to CLOUD NOTE BOOK</h1>
+        <h1 className={`text-${
+              props.mode === "dark" ? "light" : "secondary"
+            }`} >Login to CLOUD NOTE BOOK</h1>
         <div className="mb-3">
-          <label htmlFor="email" className="form-label">
+          <label htmlFor="email" className={`form-label text-${
+                props.mode === "dark" ? "light" : "secondary"
+                // props.mode === "light" ? "secondary" : "light"
+              }`}>
             Email address
           </label>
           <input
             type="email"
-            className="form-control"
+            className={`form-control  bg-${props.mode === "light" ? "Dark" : "light"}`}
             id="email"
             onChange={onChange}
             value={Credentials.email}
@@ -59,12 +64,14 @@ export const Login = (props) => {
             aria-describedby="emailHelp"
             placeholder='username'
           />
-          <div id="emailHelp" className="form-text">
+          <p id="emailHelp" className={`form-text text-${props.mode === "dark" ? "light" : "secondary"}  `}>
             We'll never share your email with anyone else, or may be 😅.
-          </div>
+          </p>
         </div>
         <div className="mb-3">
-          <label htmlFor="password" className="form-label">
+          <label htmlFor="password" className={`form-label text-${
+                props.mode === "dark" ? "light" : "secondary"
+              }`}>
             Password
           </label>
           <input

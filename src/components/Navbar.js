@@ -1,24 +1,27 @@
-import React,{useEffect} from "react";
-import { Link, useLocation,useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 // function based component for loading navbar
-export const Navbar = () => {
-  const navigate = useNavigate()
-  const handlelogout = ()=>{
-    localStorage.removeItem('token');
-    navigate('/login')
-  }
-  // here we are adding  using useLocation hook to get the locaiton of page we are on, like in this either we are in / page or in /about page location variable will strore the whole object returned from useLocation() function 
+export const Navbar = (props) => {
+  console.log(props.mode)
+  const navigate = useNavigate();
+  const handlelogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+  // here we are adding  using useLocation hook to get the locaiton of page we are on, like in this either we are in / page or in /about page location variable will strore the whole object returned from useLocation() function
   let location = useLocation();
-  useEffect(()=>{
+  useEffect(() => {
     // location.pathname will store the path name of page
     // console.log(location.pathname) //printing the location of the page
-    },[location])
-    //here we are using use effect ti get the location everytime we refresh the page or move to another page like home or about (int this case)
+  }, [location]);
+  //here we are using use effect ti get the location everytime we refresh the page or move to another page like home or about (int this case)
   return (
     <>
-    {/* bootstrap code to make navbar */}
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between"> 
+      {/* bootstrap code to make navbar */}
+      <nav className={`navbar navbar-expand-lg navbar-${
+              props.mode === "light" ? "light" : "dark"
+            } d-flex justify-content-between`}>
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             Navbar
@@ -37,28 +40,60 @@ export const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className={`nav-link ${location.pathname==="/"?"active":""}`} aria-current="page" to="/">{/* here we are using turnary operators to check if we are in / page than active class will get added else not  */}
-                {/* we are adding active so that on being on that page, in the navbar name of that apge will get brighter */}
+                <Link
+                  className={`nav-link ${
+                    location.pathname === "/" ? "active" : ""
+                  }`}
+                  aria-current="page"
+                  to="/"
+                >
+                  {/* here we are using turnary operators to check if we are in / page than active class will get added else not  */}
+                  {/* we are adding active so that on being on that page, in the navbar name of that apge will get brighter */}
                   Home
                 </Link>
               </li>
               <li className="nav-item">
                 <Link
-                  className={`nav-link ${location.pathname==="/about"? "active":""}`}
+                  className={`nav-link ${
+                    location.pathname === "/about" ? "active" : ""
+                  }`}
                   aria-current="page"
                   to="/About"
-                >{/* here we are using turnary operators to check if we are in / page than active class will get added else not  */}
-                {/* we are adding active so that on being on that page, in the navbar name of that apge will get brighter */}
+                >
+                  {/* here we are using turnary operators to check if we are in / page than active class will get added else not  */}
+                  {/* we are adding active so that on being on that page, in the navbar name of that apge will get brighter */}
                   About
                   {/* about id to made  */}
                 </Link>
               </li>
             </ul>
           </div>
-            {!localStorage.getItem("token")?<form className="d-flex ">
-              <Link className="btn btn-primary mx-2" to="/login" role="button">Login</Link>
-              <Link className="btn btn-primary mx-3" to="/signup" role="button">Sign up</Link>
-            </form>:<button className="btn btn-primary mx-3" onClick={handlelogout}>logout</button>}
+          <div class="form-check form-switch">
+            <label className={`form-check-label mx-3 text-${props.mode==='light'?'Dark':'light'}`} for="flexSwitchCheckDefault">
+            {props.mode==='light'?'Dark':'light'} Mode
+            </label>
+            <input
+              className="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="flexSwitchCheckDefault"
+              onClick={props.Togglemode} 
+            />
+          </div>
+          {!localStorage.getItem("token") ? (
+            <form className="d-flex ">
+              <Link className="btn btn-primary mx-2" to="/login" role="button">
+                Login
+              </Link>
+              <Link className="btn btn-primary mx-3" to="/signup" role="button">
+                Sign up
+              </Link>
+            </form>
+          ) : (
+            <button className="btn btn-primary mx-3" onClick={handlelogout}>
+              logout
+            </button>
+          )}
         </div>
       </nav>
     </>

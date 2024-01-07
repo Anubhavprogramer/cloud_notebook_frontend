@@ -45,14 +45,20 @@ export const Signup = (props) => {
         className="container w-5 border border-4 py-3 my-5"
         onSubmit={Submittheform}
       >
-        <h1>SIGN UP to CLOUD NOTE BOOK</h1>
+        <h1 className={`text-${
+              props.mode === "dark" ? "light" : "secondary"
+            }`}>SIGN UP to CLOUD NOTE BOOK</h1>
         <div className="mb-3">
-          <label htmlFor="name" className="form-label">
+          <label htmlFor="name" className={`form-label text-${
+              props.mode === "dark" ? "light" : "secondary"
+            }`}>
             name
           </label>
           <input
             type="text"
-            className="form-control"
+            className={`form-control text-${
+              props.mode === "dark" ? "light" : "secondary"
+            }`}
             id="name"
             onChange={onChange}
             value={Credentials.name}
@@ -62,7 +68,9 @@ export const Signup = (props) => {
             />
         </div>
         <div className="mb-3">
-          <label htmlFor="email" className="form-label">
+          <label htmlFor="email" className={`form-label text-${
+              props.mode === "dark" ? "light" : "secondary"
+            }`}>
             Email address
           </label>
           <input
@@ -77,7 +85,9 @@ export const Signup = (props) => {
             />
         </div>
         <div className="my-2">
-          <label htmlFor="password" className="form-label">
+          <label htmlFor="password" className={`form-label text-${
+              props.mode === "dark" ? "light" : "secondary"
+            }`}>
             Password
           </label>
           <input
@@ -93,7 +103,9 @@ export const Signup = (props) => {
           />
         </div>
         <div className="my-2">
-          <label htmlFor="cnfpassword" className="form-label">
+          <label htmlFor="cnfpassword" className={`form-label text-${
+              props.mode === "dark" ? "light" : "secondary"
+            }`}>
             Confirm Password
           </label>
           <input

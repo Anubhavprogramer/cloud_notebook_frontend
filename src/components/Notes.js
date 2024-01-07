@@ -1,4 +1,4 @@
-import React, { useContext,useEffect, useRef,useState } from "react";
+import React, { useContext,useEffect, useRef,useState } from "react";  
 import { useNavigate } from "react-router-dom";
 import noteContext from "../context/Notes/NoteContext";
 import { Noteitem } from "./Noteitem";
@@ -43,7 +43,7 @@ export const Notes = (props) => {
 
   return (
     <>
-      <Addnote showAlert={props.showAlert}/>
+      <Addnote showAlert={props.showAlert} mode={props.mode}/>
       {/* <!-- Modal --> */}
       <button ref={ref} type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" className="d-none">
       </button>
@@ -54,15 +54,16 @@ export const Notes = (props) => {
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog">
+        <div className={`modal-dialog bg-${props.mode === "light" ? "light" : "dark"}`}>
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
                 Update the Note
               </h5>
+              
               <button
                 type="button"
-                className="btn-close d-none"
+                className={`btn-close d-none  bg-${props.mode === "light" ? "light" : "dark"}`}
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
@@ -142,7 +143,7 @@ export const Notes = (props) => {
 
       {/* modal ends  */}
       <div className="row mt-10">
-        <h1>Your notes</h1>
+        <h1 className={` container text-${props.mode === "dark" ? "light" : "secondary"}`} >Your notes</h1>
         <div className="container">
         {notes.length===0 && 'No notes avaliable'}
         </div>
