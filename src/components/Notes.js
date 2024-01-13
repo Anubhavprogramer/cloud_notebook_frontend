@@ -1,5 +1,5 @@
-import React, { useContext,useEffect, useRef,useState } from "react";  
-import { useNavigate } from "react-router-dom";
+import React, { useContext,useEffect, useRef,useState } from "react";  // hooks to use tham in our projects like useContext,useeffect,useRef,useState (here)
+import { useNavigate } from "react-router-dom";   //useNavigate to navigate between vaious routes 
 import noteContext from "../context/Notes/NoteContext";
 import { Noteitem } from "./Noteitem";
 import { Addnote } from "./Addnote";
