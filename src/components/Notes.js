@@ -1,11 +1,11 @@
 import React, { useContext,useEffect, useRef,useState } from "react";  // hooks to use tham in our projects like useContext,useeffect,useRef,useState (here)
 import { useNavigate } from "react-router-dom";   //useNavigate to navigate between vaious routes 
-import noteContext from "../context/Notes/NoteContext";
-import { Noteitem } from "./Noteitem";
-import { Addnote } from "./Addnote";
-
-export const Notes = (props) => {
-  const ref = useRef(null);
+import noteContext from "../context/Notes/NoteContext";  //importing contest from context folder to access the states
+import { Noteitem } from "./Noteitem";  // importing the noteitem components 
+import { Addnote } from "./Addnote";  // importing the addnote components this component helps to add all the notes of that perticular user to our application 
+//creating Notes named arrow funciton which takes props as the arguments and use it to calculate the perticular values
+export const Notes = (props) => {  
+  const ref = useRef(null);   // useRef hook to 
   const refclose = useRef(null);
   const context = useContext(noteContext);
   const navigation = useNavigate(); 
@@ -23,8 +23,9 @@ export const Notes = (props) => {
     // eslint-disable-next-line
   }, []);
 
+  //updatenote function to update the note from current note and update it to the note state
   const updateNote = (currentnote) => {
-    ref.current.click();
+    ref.current.click(); 
     setnote({id:currentnote._id,etitle:currentnote.title,edescription:currentnote.description,etag:currentnote.tag})
     // props.showAlert("Note updated successfully", "success")
   };
@@ -147,7 +148,7 @@ export const Notes = (props) => {
         <div className="container">
         {notes.length===0 && 'No notes avaliable'}
         </div>
-        {notes.map((note) => {
+        {Array.isArray(notes) && notes.map((note) => {
           return (
             <Noteitem key={note._id} updateNote={updateNote} note={note} showAlert={props.showAlert}/>
           );

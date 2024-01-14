@@ -27,7 +27,7 @@ export const Addnote = (props) => {
     setnote({...note,[e.target.name]:e.target.value})
   }
   return (
-    <div className="container">
+    <div className="container ">
         <h1 className={` container text-${props.mode === "dark" ? "light" : "secondary"}`}>Add a new note</h1>
         <div className="mb-3">
           <label htmlFor="title" className={`form-label text-${
